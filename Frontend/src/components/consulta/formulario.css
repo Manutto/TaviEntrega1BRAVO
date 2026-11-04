@@ -1,0 +1,72 @@
+.intake-panel {
+  padding: 23px 25px;
+}
+.intake-panel h3 {
+  color: #22414d;
+  font-size: 16px;
+  margin: 0 0 16px;
+}
+.intake-view .form-label {
+  display: block;
+  margin: 18px 0 7px;
+}
+.intake-fields {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.intake-view .project-name-input:disabled {
+  background: #f3f6f6;
+  color: #7a8f95;
+  cursor: not-allowed;
+}
+.intake-view .project-name-input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #cfdcdd;
+  border-radius: 7px;
+  background: white;
+  color: #22414d;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 10px 11px;
+}
+.intake-view .project-name-input[aria-invalid='true'] {
+  border-color: #c9564c;
+  background: #fffafa;
+}
+.intake-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.5;
+}
+.intake-hint {
+  margin: 6px 0 0;
+  color: #819198;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.intake-error {
+  margin: 6px 0 0;
+  color: #a33d35;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.intake-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+.intake-actions .button.primary {
+  margin-bottom: 0;
+}
+.intake-view :focus-visible {
+  outline: 2px solid #177e6c;
+  outline-offset: 2px;
+}

@@ -1,0 +1,50 @@
+name: mundus-entrega1
+
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: mundus_entrega1
+      POSTGRES_USER: mundus
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Copia .env.example a .env y define DB_PASSWORD}
+    volumes:
+      - postgres:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mundus -d mundus_entrega1"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  backend:
+    build:
+      context: .
+      dockerfile: Backend/Dockerfile
+    environment:
+      SERVER_PORT: "8080"
+      DB_URL: jdbc:postgresql://postgres:5432/mundus_entrega1
+      DB_USER: mundus
+      DB_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD en .env}
+      ASISTENTE_URL: http://host.docker.internal:${ASISTENTE_PUERTO:-8002}
+    volumes:
+      - ./output/guias:/app/datos/guias
+      - ${VECTOR_CACHE_HOST:-./output/modelos/huggingface}:/app/modelos/huggingface:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://localhost:8080/api/health"]
+      interval: 10s
+      timeout: 5s
+      start_period: 40s
+      retries: 12
+
+  frontend:
+    build: ./Frontend
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-8082}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  postgres:

@@ -1,0 +1,15 @@
+.env
+**/.env
+**/.env.local
+.venv*/
+**/__pycache__/
+**/.pytest_cache/
+**/node_modules/
+**/target/
+**/dist/
+**/*.tsbuildinfo
+output/
+**/.env.*
+!**/.env.example
+**/.ipynb_checkpoints/
+*.log

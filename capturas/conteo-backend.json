@@ -1,0 +1,14 @@
+{
+  "total": 42,
+  "java": 35,
+  "otros": 7,
+  "por_carpeta_java": {
+    "Aplicación principal": 1,
+    "config": 1,
+    "controller": 3,
+    "dto": 5,
+    "entity": 1,
+    "repository": 7,
+    "service": 17
+  }
+}
